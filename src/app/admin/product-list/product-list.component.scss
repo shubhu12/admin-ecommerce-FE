@@ -1,0 +1,125 @@
+.container {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.custom-table thead {
+  background-color: #343a40;
+  color: white;
+}
+
+.product-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+.image-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+
+}
+
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.preview-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Popup container */
+.image-container .popup-image {
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 90px; /* right side of thumbnail */
+  border: 1px solid #ccc;
+  background: white;
+  padding: 5px;
+  border-radius: 6px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Show popup on hover */
+.image-container:hover .popup-image {
+  display: block;
+}
+
+/* Larger popup image size */
+.image-container .popup-image img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}

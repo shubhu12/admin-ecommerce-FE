@@ -1,0 +1,51 @@
+<div class="container">
+
+  <div class="header">
+    <h3 class="title">List of Available Products</h3>
+    <a (click)="openViewDialog('add','')" class="add-button">
+      <span>＋</span> Add Product
+    </a>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Images</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of data">
+          <td>{{ p.sku }}</td>
+          <td>
+            <a [routerLink]="['/products/view', p.id]" class="product-link">
+              {{ p.name }}
+            </a>
+          </td>
+          <td>{{ p.price | currency }}</td>
+          <td>
+            <div class="image-container" *ngFor="let img of p.images"
+              style="display: inline-block; position: relative; margin-right: 10px;">
+              <img [src]="img" alt="preview" class="preview-image" />
+              <div class="popup-image">
+                <img [src]="img" alt="large preview" />
+              </div>
+            </div>
+
+          </td>
+          <td>
+            <div class="action-buttons">
+              <a (click)="openViewDialog('edit',p)" class="btn-edit">Edit</a>
+              <button (click)="delete(p.id)" class="btn-delete">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

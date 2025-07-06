@@ -1,0 +1,35 @@
+<h2>{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
+<form [formGroup]="productForm" (ngSubmit)="save()">
+  <div>
+    <label>SKU:</label><br />
+    <input formControlName="sku" />
+  </div>
+  <div>
+    <label>Name:</label><br />
+    <input formControlName="name" />
+  </div>
+  <div>
+    <label>Price:</label><br />
+    <input type="number" formControlName="price" />
+  </div>
+
+  <div>
+    <label>Upload Images:</label><br />
+    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" />
+  </div>
+
+  <div *ngIf="imagePreviews.length > 0" style="margin-top: 10px;">
+    <label>Preview:</label>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px;">
+      <img *ngFor="let img of imagePreviews" [src]="img" alt="preview"
+        style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #ccc; border-radius: 4px;" />
+    </div>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <button type="submit" [disabled]="productForm.invalid">
+      {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+    <button type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>
