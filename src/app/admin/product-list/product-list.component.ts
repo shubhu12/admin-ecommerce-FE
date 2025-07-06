@@ -8,7 +8,7 @@ interface Product {
   id: number;
   sku: string;
   name: string;
-  price: string;  // or number if you convert it
+  price: string;
   images: string[];
 }
 
@@ -54,10 +54,8 @@ export class ProductListComponent implements OnInit {
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      // The dialog was closed with data (saved or updated)
       this.refresh();
     }
-    // else dialog was cancelled or closed without saving, no refresh needed
   });
 }
 

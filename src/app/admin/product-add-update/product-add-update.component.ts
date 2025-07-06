@@ -27,7 +27,7 @@ export class ProductAddUpdateComponent implements OnInit {
       sku: [data.product?.sku || '', Validators.required],
       name: [data.product?.name || '', Validators.required],
       price: [data.product?.price || 0, [Validators.required, Validators.min(0)]],
-      images: [''] // We'll handle images separately, so no need to bind here
+      images: ['']
     });
   }
 
@@ -46,26 +46,18 @@ export class ProductAddUpdateComponent implements OnInit {
 
     const formValues = this.productForm.value;
 
-    // Prepare FormData to send files + fields together
     const formData = new FormData();
     formData.append('sku', formValues.sku);
     formData.append('name', formValues.name);
     formData.append('price', formValues.price.toString());
 
-    // Append selected files to FormData
     this.selectedFiles.forEach(file => {
       formData.append('images', file);
     });
 
-    if (this.isEditMode && this.data.product.id) {
-      console.log(this.data.product.id);
-      console.log(formData);
-      
-      
-      // If editing, call update API with id and FormData
+    if (this.isEditMode && this.data.product.id) {      
       this.productsApi.updateProduct(this.data.product.id, formData).subscribe({
         next: (res) => {
-          console.log('Product updated:', res);
           this.dialogRef.close(res);
         },
         error: (err) => {
@@ -73,7 +65,6 @@ export class ProductAddUpdateComponent implements OnInit {
         }
       });
     } else {
-      // If creating, call create API
       this.productsApi.createProduct(formData).subscribe({
         next: (res) => {
           console.log('Product created:', res);
@@ -97,7 +88,6 @@ export class ProductAddUpdateComponent implements OnInit {
     this.selectedFiles = Array.from(input.files);
     this.imagePreviews = [];
 
-    // Preview selected images
     this.selectedFiles.forEach(file => {
       const reader = new FileReader();
       reader.onload = () => {
